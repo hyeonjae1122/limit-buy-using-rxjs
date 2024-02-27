@@ -1,0 +1,58 @@
+<div class="flex justify-center">
+<div class="order-form buy-order">
+    <label class="form-title color-buy qst-title">LIMIT BUY</label>
+
+    <!-- PRICE -->
+    <div class="input-field-title">
+      <label>PRICE</label>
+    </div>
+    <div class="form-input-unit">
+      <input #price
+       placeholder="0"
+       type="text"
+       class="price qst-price"
+       (input)="priceA$.next(price.value)">
+       <label class="input-unit">BTC </label>
+    </div>
+
+    <!--AMOUNT-->
+    <div class="input-field-title">
+      <label>AMOUNT</label>
+    </div>
+    <div class="form-input-unit">
+      <input #amount
+       placeholder="0"
+       type="text"
+       class="amount qst-amount"
+      (input)="amountA$.next(amount.value)">
+      <label class="input-unit">DOGE</label>
+    </div>
+
+    <div class="order-detail-wrap">
+      <dl class="order-detail-list">
+        <!--ORDER-->
+        <dt class="title">ORDER</dt>
+        <dd class="volume">
+          <span class="amount">{{totalOrderAmountV$ | async}}</span>
+          <span class="unit">BTC</span>
+        </dd>
+
+        <!-- EST, TOTAL -->
+        <dt class="title"> EST, TOTAL </dt>
+        <dd class="volume">
+          <span class="amount"><b></b></span>
+          <span class="unit">{{estTotalV$ | async}}DOGE</span>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- LIMIT BUY BUTTON -->
+    <div class="button-submit-wrap">
+      <button class="btn-submit btn-solid-green"
+              [disabled]="buyButtonDisabledV$ | async"
+      (click)="placeOrderA$.next(orderData)">
+        Limit Buy
+      </button>
+    </div>
+  </div>
+</div>
